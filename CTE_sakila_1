@@ -1,0 +1,12 @@
+WITH payment_query AS (
+    SELECT customer_id, sum(amount), payment_date
+    FROM payment
+    WHERE payment_date BETWEEN '2005-07-01' AND '2005-08-12'
+    GROUP BY customer_id, payment_date
+    ORDER BY 2 DESC
+)
+SELECT first_name, last_name, email
+FROM customer AS c
+INNER JOIN payment_query AS pq
+ON c.customer_id = pq.customer_id
+;
