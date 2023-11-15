@@ -1,0 +1,16 @@
+with 
+film_spec as (
+	select film_id, title, release_year, rental_rate, length, replacement_cost
+	from film
+	where replacement_cost > 11
+	order by 1 desc
+),
+actor_spec as(
+	select *
+	from actor
+)
+select fs.title, fs.release_year, fs.rental_rate, fs.length, asp.first_name, asp.last_name from film_spec fs
+join film_actor fa on fs.film_id = fa.film_id 
+join actor_spec asp on fa.actor_id  = asp.actor_id
+
+; 
