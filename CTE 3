@@ -1,0 +1,14 @@
+with
+customer_spec as (
+	select first_name, last_name, email, store_id
+	from customer
+),
+film_spec as (
+	select title, release_year, length, film_id
+	from film
+)
+select distinct cs.first_name, cs.last_name, cs.email, fs.title, fs.release_year, fs.length
+from customer_spec cs
+join inventory i on i.store_id = cs.store_id
+join film_spec fs on fs.film_id = i.film_id 
+;
