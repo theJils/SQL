@@ -1,0 +1,7 @@
+select
+	title, length, rating,rental_rate,
+	avg(rental_rate) over() as avg_rental_rate,
+	rental_duration,
+	avg(rental_duration) over() as rental_duration_per_movie
+from film
+;
